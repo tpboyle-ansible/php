@@ -1,0 +1,15 @@
+---
+
+# - name: PHP 7.2 repos are installed (RedHat-based distros).
+#   include_tasks: install-redhat.yml
+#   when: os_family == "RedHat/CentOS"
+
+- name: PHP 7.2 repos are installed (Debian-based distros).
+  include_tasks: install-debian.yml
+  when: os_family == "Ubuntu/Debian"
+
+- name: PHP-FPM has been enabled on start-up & started.
+  service:
+    enabled: yes
+    state: started
+    name: php7.2-fpm

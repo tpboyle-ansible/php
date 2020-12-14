@@ -1,0 +1,30 @@
+---
+
+- name: EPEL repository is set up (RHEL only).
+  become: yes
+  yum:
+    state: present
+    name:
+      - yum-utils
+      - epel-release
+      - "http://rpms.remirepo.net/enterprise/remi-release-7.rpm"
+
+- name: PHP repository set to PHP version 7.2.
+  command: "yum-config-manager --enable remi-php72"
+
+- name: php7.2 (with modules!) is installed.
+  package:
+    state: present
+    name: 
+      - php72
+      - php72-cli
+      - php72-common
+      - php72-fpm
+      - php72-gd
+      - php72-json
+      - php72-mbstring
+      - php72-mysql
+      - php72-opcache
+      - php72-sqlite3
+      - php72-xml
+      - php72-zip
